@@ -27,16 +27,14 @@ This repository can be used to automate the Fabric data pipeline deployment with
   Save the Json & upload the Json in the lakehouse in Destination workspace.
 
 # STEP 3 Identify external connections & create connections in destination tenant
-1. Identify External connections/references used in pipelines. External references could be an Azure PostgreSQL DB connection or Azure SQL DB connection or even  Blob Storage/ADLS Gen2 storage in Azure in the data pipeline. You can use "IdentifyExternalInternalConnections.ipynb" in scripts to identify the list of extenal connections & their corresponding id in your pipeline.
-As a pre-requisite for this, update the value of “identifyconnections_deployment_config.yml” file with
+1. Identify External connections/references used in pipelines. External references could be an Azure PostgreSQL DB connection or Azure SQL DB connection or even  Blob Storage/ADLS Gen2 storage in Azure in the data pipeline. You can use "IdentifyExternalInternalConnections.ipynb" in scripts to identify the list of extenal connections & their corresponding id in your pipeline.As a pre-requisite for this, update the value of “identifyconnections_deployment_config.yml” file with
   pipelinedisplayname — The Name of the data pipeline
   pipelinejsonfilepath — The file path of the data pipeline; as shown in below figure.
-
-  ![Identify connections deployment config example](images/identifyconnections_deployment_config_example.png)
+![Identify connections deployment config example](images/identifyconnections_deployment_config_example.png)
 1. Execute “IdentifyExternalInternalConnections” notebook in the nootbook folder. Make sure that you have attached & pinned the right lakehouse before executing the notebook.
 ![IdentifyExternalInternalConnections-Notebook](images/IdentifyExternalInternalConnections-Notebook.png)
 1. After executing below output is obtained.
-![Output of IdentifyExternalInternalConnections-Notebook](Output of IdentifyExternalInternalConnections-Notebook.png)
+![Output of IdentifyExternalInternalConnections-Notebook](images/Identifyinternalexternalconnections.png)
 With this we have identified that we have an external connection so go to Settings in Source tenant -> Manage Connections, identify the connection type e.g. PostgreSQL, SQL DB based on the ID obtained from above step.
 
 1. Once the external connection type for the source tenant is identified, We need to create the external connection in destination tenant. Please follow below steps to create a new connection & obtain the new ConnectionID. Please note that this will be used further.
@@ -52,6 +50,8 @@ Note - Always make sure that all the child pipelines are included first in the Y
 1. Import the "FabricDataPipelineAutoDeployment" notebook.
 1. The final step is to Run the “FabricDataPipelineAutoDeployment” notebook.Make sure that you have attached & pinned the right lakehouse before executing the notebook.
 ![Fabric Data Pipeline Auto Deployment run all](images/FabricDataPipelineAutoDeployment_runall.png)
+1. The data pipeline gets deployed in the target tenant.
+![Datapipeline deployed](images/finaldatapipelineinTargetTenant.png)
 --------------------------------------------------------------------
 
 
