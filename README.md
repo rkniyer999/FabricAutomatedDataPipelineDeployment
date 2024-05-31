@@ -1,10 +1,14 @@
 # FabricAutomatedDataPipelineDeployment
 
-![FabricAutomatedDataPipelineDeploymentOverview](image-11.png)
-One of the significant use case we often hear from our customer is the ability to migrating resources across tenants. Supporting tenant migration is crucial for maintaining flexibility, scalability, and resilience in a multi-tenant environment. This capability allows businesses to adapt to changing needs and conditions effectively.Through we have multiple ways to migrate various resources including notebooks,data in lakehouses, Power BI but we don't have similar feature in Microsoft Fabric.In Azure Data Factory (ADF), We had import & export of pipelines facility which made it super easy for customers or even ISV's to reuse and redeploy the pipelines.This repository is used to automate the Fabric data pipeline deployment within same tenant & cross tenant deployment. To make it simple, I have divided it into 3 step process.
+![FabricAutomatedDataPipelineDeploymentOverview](images/MigrateFabricDataPipelineOverview.png)
+One of the significant use cases we often hear from our customers is the ability to migrate resources across tenants. Supporting tenant migration is crucial for maintaining flexibility, scalability, and resilience in a multi-tenant environment. This capability also allows businesses to reuse and redeploy pipelines across tenants.
 
-**Pre-requisites**
+For those familiar with Azure Data Factory (ADF), you know that its import and export capabilities have made pipeline migration a breeze, enabling customers and ISVs alike to reuse and redeploy pipelines across tenants.
+
+This repository can be used to automate the Fabric data pipeline deployment within the same tenant and for cross-tenant deployments. To make it simple, I have divided it into a 5-step process.
+
 # STEP 1 Create Workspace,Lakehouse & Data Warehouse in destination Tenant
+**Pre-requisites**
 1. A Fabric **Destination workspace** is needed where Fabric data pipelines need to be deployed. This can be an **existing workspace or a new workspace**. Get the e.g. Workspace ID - 66a92280-b91b-408e-bdd5-0276ad7d35a1.
 1. Within this workspace, create a **Lakehouse** or identify **existing lakehouse** where the data needs to be ingested in **Destination workspace**.
     - Get the Lakehouse ID e.g. a1e8b2fe-7527-40b7-a137-648be36a6602
