@@ -31,30 +31,14 @@ Create connections by going to "Settings" -> "Manage connections and gateways" -
 
 # STEP 4 Update pipeline deployment config files
 1. Below figure shows the YAML configuration file for deploying the fabric data pipelines.
-!YAML configuration file](image-6.png)
-1. Open **"pipeline_deployment_config.yml"** & Update the DestinationDatawarehousedetails & DestinationLakehousedetails as highlighted in the below with the details of obtained from above step 2 & 3. figure.
-![image.png](/.attachments/image-ffc80cba-2d94-497d-9ee0-dc8eb48b71d4.png)
+![YAML configuration file](image-7.png)
 
-
-![image.png](/.attachments/image-853211e7-d0ec-4078-93aa-5d2c12e9b3f2.png)
-![image.png](/.attachments/image-e158e193-fc57-4d5e-a601-05b32576adb3.png)
-
-Similarly create connection for ADLS Gen2 storage in Azure & get the connection ID details.
-
-**Note** - If the connections to same source are already present then only get the details of connection id._
-
-1. Update the externalreferences configuration in **"pipeline_deployment_config.yml"**  for PL_Auditing_PG,PL_PopulateMetadataTable_PG,PL_DynamicIngestionPipelineIncrmLoad_PG,PL_DynamicIngestionPipelineFullLoad_PG as highlighted in below figure.
-
-![image.png](/.attachments/image-55a2ccbb-81fb-4e94-b10d-06141b1909d0.png)
-
-1. Upload the Json files & the updated pipeline_deployment_config.yml file in the lakehouse as shown in the below figure.
-
-![image.png](/.attachments/image-ea5fde20-f059-4d34-8df9-1a046622f581.png)
---------------------
-
-# STEP 3
-1. Import the "DeployTrinityIngestionFramework" notebook.
+# STEP 5
+1. Import the "DeployFabricDataPipelineUtility" notebook.
 ![image.png](/.attachments/image-e14ba5ea-3a3c-4af4-b844-7406513c3a19.png)
 1. Please make sure that lakehouse where we have the Json & YAML files are marked as default.
 ![image.png](/.attachments/image-7e8d27d9-9076-4e5c-9e51-bbe1951b959b.png)
-1. Execute the "DeployTrinityIngestionFramework" notebook.
+1. Execute the "DeployFabricDataPipelineUtility" notebook.
+--------------------------------------------------------------------
+
+
