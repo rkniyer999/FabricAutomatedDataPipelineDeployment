@@ -21,28 +21,37 @@ This repository can be used to automate the Fabric data pipeline deployment with
 
 # STEP 2 Identify Data Pipelines to be migrated & save the assets.
 1. Identify the data pipelines to be deployed.For all the pipelines that are deployed, Go to the pipeline & select "View JSON code".
-![View JSON code](image-4.png)
+![View JSON code](images/viewJSONcode.png)
 1. Go to "Copy to clipboard" & "Close".
-  ![view JSON code](image-2.png)
+  ![view JSON code](images/copytoclipboard.png)
   Save the Json & upload the Json in the lakehouse in Destination workspace.
 
 # STEP 3 Identify external connections & create connections in destination tenant
-1. Identify External connections/references used in pipelines. External references could be an Azure PostgreSQL DB connection or Azure SQL DB connection or even  Blob Storage/ADLS Gen2 storage in Azure in the data pipeline. You can use "" in scripts to identify the list of extenal connections & their corresponding id in your pipeline. **Note** If your pipeline is simple you can do a find & note the connection id.
-![alt text](image-5.png)
-1. Create connections in new Tenant for the external references for the source Azure data stores from where you want to ingest data. We have PostgreSQL DB & Blob Storage/ADLS Gen2 storage in Azure. 
+1. Identify External connections/references used in pipelines. External references could be an Azure PostgreSQL DB connection or Azure SQL DB connection or even  Blob Storage/ADLS Gen2 storage in Azure in the data pipeline. You can use "IdentifyExternalInternalConnections.ipynb" in scripts to identify the list of extenal connections & their corresponding id in your pipeline.
+As a pre-requisite for this, update the value of “identifyconnections_deployment_config.yml” file with
+  pipelinedisplayname — The Name of the data pipeline
+  pipelinejsonfilepath — The file path of the data pipeline; as shown in below figure.
+
+  ![Identify connections deployment config example](images/identifyconnections_deployment_config_example.png)
+1. Execute “IdentifyExternalInternalConnections” notebook in the nootbook folder. Make sure that you have attached & pinned the right lakehouse before executing the notebook.
+![IdentifyExternalInternalConnections-Notebook](images/IdentifyExternalInternalConnections-Notebook.png)
+1. After executing below output is obtained.
+![Output of IdentifyExternalInternalConnections-Notebook](Output of IdentifyExternalInternalConnections-Notebook.png)
+With this we have identified that we have an external connection so go to Settings in Source tenant -> Manage Connections, identify the connection type e.g. PostgreSQL, SQL DB based on the ID obtained from above step.
+
+1. Once the external connection type for the source tenant is identified, We need to create the external connection in destination tenant. Please follow below steps to create a new connection & obtain the new ConnectionID. Please note that this will be used further.
 Create connections by going to "Settings" -> "Manage connections and gateways" -> "New". Once the new connection is created save the new connection id.
-![Manage connections and gateways](image-9.png)
+![Manage connections and gateways](images/manageconnection.png)
 
 # STEP 4 Update pipeline deployment config files
 1. Below figure shows the YAML configuration file for deploying the fabric data pipelines.
-![YAML configuration file](image-7.png)
+![YAML configuration file](images/pipeline_deployment_config_details.png)
+Note - Always make sure that all the child pipelines are included first in the YML file.
 
 # STEP 5
-1. Import the "DeployFabricDataPipelineUtility" notebook.
-![image.png](/.attachments/image-e14ba5ea-3a3c-4af4-b844-7406513c3a19.png)
-1. Please make sure that lakehouse where we have the Json & YAML files are marked as default.
-![image.png](/.attachments/image-7e8d27d9-9076-4e5c-9e51-bbe1951b959b.png)
-1. Execute the "DeployFabricDataPipelineUtility" notebook.
+1. Import the "FabricDataPipelineAutoDeployment" notebook.
+1. The final step is to Run the “FabricDataPipelineAutoDeployment” notebook.Make sure that you have attached & pinned the right lakehouse before executing the notebook.
+![Fabric Data Pipeline Auto Deployment run all](images/FabricDataPipelineAutoDeployment_runall.png)
 --------------------------------------------------------------------
 
 
