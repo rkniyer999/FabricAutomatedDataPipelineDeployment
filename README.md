@@ -1,9 +1,12 @@
 # FabricAutomatedDataPipelineDeployment
+
+![FabricAutomatedDataPipelineDeployment](image-1.png)
 One of the key challenges faced was to reuse & redeploy the Fabric data pipeline from one environment to another be it one tenant or be it different workspace within same tenant. In Azure Data Factory (ADF), We had import & export of pipelines facility which made it super easy for customers or even ISV's to reuse and redeploy the pipelines, but we don't have similar feature in Microsoft Fabric.
 
-This repository is used to automate the Fabric data pipeline deployment within same tenant & cross tenant deployment. To make it simple, we have divided it into 3 step process.
+This repository is used to automate the Fabric data pipeline deployment within same tenant & cross tenant deployment. To make it simple, I have divided it into 3 step process.
 
 # STEP 1
+
 # STEP 2
 
 1. A Fabric **Destination workspace** is needed where Fabric data pipelines need to be deployed. This can be an **existing workspace or a new workspace**. Get the e.g. Workspace ID - 66a92280-b91b-408e-bdd5-0276ad7d35a1.
