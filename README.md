@@ -1,19 +1,30 @@
 # FabricAutomatedDataPipelineDeployment
 
 ![FabricAutomatedDataPipelineDeployment](image-1.png)
-One of the key challenges faced was to reuse & redeploy the Fabric data pipeline from one environment to another be it one tenant or be it different workspace within same tenant. In Azure Data Factory (ADF), We had import & export of pipelines facility which made it super easy for customers or even ISV's to reuse and redeploy the pipelines, but we don't have similar feature in Microsoft Fabric.
 
-This repository is used to automate the Fabric data pipeline deployment within same tenant & cross tenant deployment. To make it simple, I have divided it into 3 step process.
+One of the significant use case we often hear from our customer is the ability to migrating resources across tenants. Supporting tenant migration is crucial for maintaining flexibility, scalability, and resilience in a multi-tenant environment. This capability allows businesses to adapt to changing needs and conditions effectively.Through we have multiple ways to migrate various resources including notebooks,data in lakehouses, Power BI but we don't have similar feature in Microsoft Fabric.In Azure Data Factory (ADF), We had import & export of pipelines facility which made it super easy for customers or even ISV's to reuse and redeploy the pipelines.This repository is used to automate the Fabric data pipeline deployment within same tenant & cross tenant deployment. To make it simple, I have divided it into 3 step process.
 
+**Pre-requisites**
 # STEP 1
-
-# STEP 2
-
 1. A Fabric **Destination workspace** is needed where Fabric data pipelines need to be deployed. This can be an **existing workspace or a new workspace**. Get the e.g. Workspace ID - 66a92280-b91b-408e-bdd5-0276ad7d35a1.
 1. Within this workspace, create a **Lakehouse** or identify **existing lakehouse** where the data needs to be ingested in **Destination workspace**.
     - Get the Lakehouse ID e.g. a1e8b2fe-7527-40b7-a137-648be36a6602
     - Get the SQL analytics endpoint e.g. x6eps4xrq2xudenlfv6naeo3i4-qarkszq3xghebpovaj3k27jvue.msit-datawarehouse.fabric.microsoft.com
     - Get the name e.g. CMFLHStore
+1. **Optional - Only if your pipeline uses Warehouse.** Create a **Warehouse** or identify existing warehouse where the metadata needs to be ingested in **Destination workspace**.
+     - Get the Warehouse ID e.g. 4114775b-f303-4e3f-b230-c31c555466d8
+     - Get the SQL connection String - x6eps4xrq2xudenlfv6naeo3i4-qarkszq3xghebpovaj3k27jvue.msit-datawarehouse.fabric.microsoft.com
+     - Get the Datawarehouse Name  - CMFDWStore
+# STEP 2
+1. Identify the data pipelines to be deployed.For all the pipelines that are deployed, Go to the pipeline & select "View JSON code".
+![View JSON code](image-4.png)
+1. Go to "Copy to clipboard" & "Close".
+  ![view JSON code](image-2.png)
+  Save the Json & upload the Json in the lakehouse in Destination workspace.
+
+1. 
+
+
 1. Create a **Warehouse** or identify existing warehouse where the metadata needs to be ingested in **Destination workspace**. 
 
      - Get the Warehouse ID e.g. 4114775b-f303-4e3f-b230-c31c555466d8
