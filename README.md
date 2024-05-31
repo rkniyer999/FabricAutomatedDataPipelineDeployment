@@ -30,6 +30,8 @@ One of the significant use case we often hear from our customer is the ability t
 Create connections by going to "Settings" -> "Manage connections and gateways" -> "New". Once the new connection is created save the new connection id.
 
 # STEP 4 Update pipeline deployment config files
+1. Below figure shows the YAML configuration file for deploying the fabric data pipelines.
+!YAML configuration file](image-6.png)
 1. Open **"pipeline_deployment_config.yml"** & Update the DestinationDatawarehousedetails & DestinationLakehousedetails as highlighted in the below with the details of obtained from above step 2 & 3. figure.
 ![image.png](/.attachments/image-ffc80cba-2d94-497d-9ee0-dc8eb48b71d4.png)
 
