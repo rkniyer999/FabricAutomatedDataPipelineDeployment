@@ -48,7 +48,7 @@ Note - Always make sure that all the child pipelines are included first in the Y
 
 # STEP 5
 1. Import the "FabricDataPipelineAutoDeployment" notebook.
-1. The final step is to Run the “FabricDataPipelineAutoDeployment” notebook.Make sure that you have attached & pinned the right lakehouse before executing the notebook.
+1. The final step is to run the “FabricDataPipelineAutoDeployment” notebook.Make sure that you have attached & pinned the right lakehouse before executing the notebook.
 ![Fabric Data Pipeline Auto Deployment run all](images/FabricDataPipelineAutoDeployment_runall.png)
 1. The data pipeline gets deployed in the target tenant.
 ![Datapipeline deployed](images/finaldatapipelineinTargetTenant.png)
