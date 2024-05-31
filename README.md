@@ -5,7 +5,7 @@
 One of the significant use case we often hear from our customer is the ability to migrating resources across tenants. Supporting tenant migration is crucial for maintaining flexibility, scalability, and resilience in a multi-tenant environment. This capability allows businesses to adapt to changing needs and conditions effectively.Through we have multiple ways to migrate various resources including notebooks,data in lakehouses, Power BI but we don't have similar feature in Microsoft Fabric.In Azure Data Factory (ADF), We had import & export of pipelines facility which made it super easy for customers or even ISV's to reuse and redeploy the pipelines.This repository is used to automate the Fabric data pipeline deployment within same tenant & cross tenant deployment. To make it simple, I have divided it into 3 step process.
 
 **Pre-requisites**
-# STEP 1 Create Destination Workspace,Lakehouse & Data Warehouse
+# STEP 1 Create Workspace,Lakehouse & Data Warehouse in destination Tenant
 1. A Fabric **Destination workspace** is needed where Fabric data pipelines need to be deployed. This can be an **existing workspace or a new workspace**. Get the e.g. Workspace ID - 66a92280-b91b-408e-bdd5-0276ad7d35a1.
 1. Within this workspace, create a **Lakehouse** or identify **existing lakehouse** where the data needs to be ingested in **Destination workspace**.
     - Get the Lakehouse ID e.g. a1e8b2fe-7527-40b7-a137-648be36a6602
@@ -29,6 +29,7 @@ One of the significant use case we often hear from our customer is the ability t
 1. Create connections in new Tenant for the external references for the source Azure data stores from where you want to ingest data. We have PostgreSQL DB & Blob Storage/ADLS Gen2 storage in Azure. 
 Create connections by going to "Settings" -> "Manage connections and gateways" -> "New". Once the new connection is created save the new connection id.
 
+# STEP 4 Update pipeline deployment config files
 1. Open **"pipeline_deployment_config.yml"** & Update the DestinationDatawarehousedetails & DestinationLakehousedetails as highlighted in the below with the details of obtained from above step 2 & 3. figure.
 ![image.png](/.attachments/image-ffc80cba-2d94-497d-9ee0-dc8eb48b71d4.png)
 
