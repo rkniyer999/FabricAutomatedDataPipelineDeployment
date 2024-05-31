@@ -28,6 +28,7 @@ One of the significant use case we often hear from our customer is the ability t
 ![alt text](image-5.png)
 1. Create connections in new Tenant for the external references for the source Azure data stores from where you want to ingest data. We have PostgreSQL DB & Blob Storage/ADLS Gen2 storage in Azure. 
 Create connections by going to "Settings" -> "Manage connections and gateways" -> "New". Once the new connection is created save the new connection id.
+![Manage connections and gateways](image-9.png)
 
 # STEP 4 Update pipeline deployment config files
 1. Below figure shows the YAML configuration file for deploying the fabric data pipelines.
