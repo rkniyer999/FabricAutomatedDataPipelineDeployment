@@ -1,0 +1,19 @@
+{
+    "name": "PL_WaitAct",
+    "objectId": "353c9d3e-3030-4ff3-a394-892e4c4b80d6",
+    "properties": {
+        "activities": [
+            {
+                "name": "ACT_GEN_Wait",
+                "description": "This activity is used to pause the execution of a pipeline for a specified period.",
+                "type": "Wait",
+                "dependsOn": [],
+                "typeProperties": {
+                    "waitTimeInSeconds": 5
+                }
+            }
+        ],
+        "lastModifiedByObjectId": "24ad6014-05cb-42ce-92f3-e4ba5271e2df",
+        "lastPublishTime": "2024-05-30T15:48:39Z"
+    }
+}

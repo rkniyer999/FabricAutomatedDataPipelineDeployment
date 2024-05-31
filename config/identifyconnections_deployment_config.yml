@@ -1,0 +1,9 @@
+# YAML file for identifying connections(External & Internal) in fabric data pipeline.
+# pipelinedisplayname - Display name for the first pipeline
+# pipelinejsonfilepath - File path for the pipeline
+
+pipelinejsonfiles:
+  - pipelinedisplayname: "PL_CopyOrdersData"
+    pipelinejsonfilepath: "/lakehouse/default/Files/PL_CopyOrdersData.json"
+  - pipelinedisplayname: "PL_WaitAct"
+    pipelinejsonfilepath: "/lakehouse/default/Files/PL_WaitAct.json"

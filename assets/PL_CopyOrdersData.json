@@ -1,0 +1,107 @@
+{
+    "name": "PL_CopyOrdersData",
+    "objectId": "138dc0f3-c82d-41a2-a2cc-39c2ab13dff8",
+    "properties": {
+        "activities": [
+            {
+                "name": "ACT_MT_Copy_InventoryDataForFullLoad",
+                "description": "This activity is used to copy data from inventory table to Lakehouse.",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "source": {
+                        "type": "AzurePostgreSqlSource",
+                        "partitionOption": "None",
+                        "datasetSettings": {
+                            "annotations": [],
+                            "type": "AzurePostgreSqlTable",
+                            "schema": [],
+                            "typeProperties": {
+                                "schema": "public",
+                                "table": "inventory"
+                            },
+                            "externalReferences": {
+                                "connection": "f39ca659-7698-41f7-93c2-6ee3a115febc"
+                            }
+                        }
+                    },
+                    "sink": {
+                        "type": "ParquetSink",
+                        "storeSettings": {
+                            "type": "LakehouseWriteSettings"
+                        },
+                        "formatSettings": {
+                            "type": "ParquetWriteSettings",
+                            "enableVertiParquet": true
+                        },
+                        "datasetSettings": {
+                            "annotations": [],
+                            "linkedService": {
+                                "name": "contosotabluelh",
+                                "properties": {
+                                    "annotations": [],
+                                    "type": "Lakehouse",
+                                    "typeProperties": {
+                                        "workspaceId": "3635bd17-d7fc-47a0-ad5f-cd926ff8012e",
+                                        "artifactId": "762ac708-402c-4b93-9187-f042e7d2a79b",
+                                        "rootFolder": "Files"
+                                    }
+                                }
+                            },
+                            "type": "Parquet",
+                            "typeProperties": {
+                                "location": {
+                                    "type": "LakehouseLocation",
+                                    "folderPath": "raw/pgdbtarget/public/Inventory"
+                                },
+                                "compressionCodec": "snappy"
+                            },
+                            "schema": []
+                        }
+                    },
+                    "enableStaging": false,
+                    "translator": {
+                        "type": "TabularTranslator",
+                        "typeConversion": true,
+                        "typeConversionSettings": {
+                            "allowDataTruncation": true,
+                            "treatBooleanAsNumber": false
+                        }
+                    }
+                }
+            },
+            {
+                "name": "ACT_GEN_EPIPE_invokeInventoryAuditSuccessForFullLoad",
+                "description": "This activity is used to invoke auditing on successful full Inventory Table Ingestion.",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "ACT_MT_Copy_InventoryDataForFullLoad",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "353c9d3e-3030-4ff3-a394-892e4c4b80d6",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true
+                }
+            }
+        ],
+        "lastModifiedByObjectId": "24ad6014-05cb-42ce-92f3-e4ba5271e2df",
+        "lastPublishTime": "2024-05-30T15:48:56Z"
+    }
+}

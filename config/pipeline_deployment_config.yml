@@ -1,0 +1,43 @@
+# YAML file for deploying the fabric pipeline.
+# pipelinedisplayname - Display name for the first pipeline
+# pipelinejsonfilepath - File path for the pipeline
+# invokepipeline - Flag indicating whether to invoke the first pipeline or not
+# invokedpipelinelist - List of pipelines invoked by the pipeline. This is present if the invokepipeline is true
+
+# originalpipelinereferenceids - List of original pipeline ids for the pipelines in the invokedpipelinelist
+# pipelinedisplayname - Display name for the pipeline
+# originalpipelineid - Original pipeline id for the pipeline
+
+# DestinationDatawarehousedetails - Details of the destination data warehouse
+# name - Name of the destination data warehouse
+# objectId - Object id of the destination data warehouse
+# endpoint - Endpoint of the destination data warehouse
+
+# DestinationLakehousedetails - Details of the destination lakehouse
+# name - Name of the destination lakehouse
+# objectId - Object id of the destination lakehouse
+# endpoint - Endpoint of the destination lakehouse
+
+pipelinejsonfiles:
+  - pipelinedisplayname: "PL_WaitAct"
+    pipelinejsonfilepath: "/lakehouse/default/Files/PL_WaitAct.json"
+    invokepipeline: "false"
+    externalreferencesflg: "false"
+    internalreferencesflg: "false"
+  - pipelinedisplayname: "PL_CopyOrdersData"
+    pipelinejsonfilepath: "/lakehouse/default/Files/PL_CopyOrdersData.json"
+    invokepipeline: "true"
+    externalreferencesflg: "true"
+    internalreferencesflg: "true"
+    invokedpipelinelist: ["PL_WaitAct"]
+    externalreferences:
+    - type: "PostgreSQL"
+      oldconnectionid: "f39ca659-7698-41f7-93c2-6ee3a115febc"
+      newconnectionid: "083d109b-2c2a-4fef-8581-69d9e1903649"
+originalpipelinereferenceids:
+  - pipelinedisplayname: "PL_WaitAct"
+    originalpipelineid: "353c9d3e-3030-4ff3-a394-892e4c4b80d6"
+DestinationLakehousedetails:
+  - name: "CMFLHStore"
+    objectId: "a1e8b2fe-7527-40b7-a137-648be36a6602"
+    endpoint: "x6eps4xrq2xudenlfv6naeo3i4-qarkszq3xghebpovaj3k27jvue.msit-datawarehouse.fabric.microsoft.com"
